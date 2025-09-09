@@ -11,3 +11,7 @@ C:\Users\lingh\AppData\Local\Android\Sdk\emulator\emulator.exe -sysdir $env:ANDR
 #### AndroidStudio模拟器启动失败原因排查<br>
 可在以下目录的日志中找到启动命令及失败原因<br>
 C:\Users\lingh\AppData\Local\Google\AndroidStudio2025.1.2\log\idea.log<br>
+
+#### 可用以下命令挂载img镜像到指定目录后查看其内容
+sudo mount -t erofs out/target/product/<device>/system.img /mnt/system<br>
+sudo umount /mnt/system<br>
