@@ -15,3 +15,6 @@ C:\Users\lingh\AppData\Local\Google\AndroidStudio2025.1.2\log\idea.log<br>
 #### 可用以下命令挂载img镜像到指定目录后查看其内容
 sudo mount -t erofs out/target/product/<device>/system.img /mnt/system<br>
 sudo umount /mnt/system<br>
+
+#### Android13自带类库可以在以下文件查看
+prebuilts\sdk\current\support\Android.bp
