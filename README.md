@@ -18,3 +18,10 @@ sudo umount /mnt/system<br>
 
 #### Android13自带类库可以在以下文件查看
 prebuilts\sdk\current\support\Android.bp
+
+#### android.bp编译时部分系统接口或字段无法编译通过的问题
+如WifiConfiguration.INVALID_RSSI字段、ConnectivityManager.getTetherableUsbRegexs()，它们在源码中存在，但在framework.jar中又会被移除掉，导致设置了platform_apis:true也无法编译通过，或者即使通过static_libs提供jar包也会因为ramework.jar优先级更高而被覆盖无作用。<br><br>
+解决方法是找到包含该类的java_sdk_library模块，比如其模块名称为framework-wifi，则在自己的模块中通过libs（不是static_libs）引入，引入名称为framework-wifi.impl（需加上.impl才能访问到隐藏接口），同时libs引入framework-res，framework（需保证其排在framework-wifi.impl后，优先级才不会覆盖framework-wifi.impl），同时设置sdk_version: "core_platform"（不能是platform_apis: true）,这样即可访问隐藏接口并编译通过。如果提示framework-wifi.impl对当前模块不可见，则修改framework-wifi.impl模块中的impl_library_visibility属性内容。<br><br>
+<img width="821" height="596" alt="image" src="https://github.com/user-attachments/assets/a4012050-e93a-43de-93c4-9df418318b75" /><br><br>
+<img width="662" height="236" alt="image" src="https://github.com/user-attachments/assets/ca4b5283-ba59-4b2a-a729-61f11e1ecc81" />
+
