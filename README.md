@@ -13,8 +13,11 @@ C:\Users\lingh\AppData\Local\Android\Sdk\emulator\emulator.exe -sysdir $env:ANDR
 C:\Users\lingh\AppData\Local\Google\AndroidStudio2025.1.2\log\idea.log<br>
 
 #### 可用以下命令挂载img镜像到指定目录后查看其内容
-sudo mount -t erofs out/target/product/<device>/system.img /mnt/system<br>
-sudo umount /mnt/system<br>
+通过file命令，如果system.img是sparse格式，则需通过以下命令安装simg2img，把sparse格式转为EROFS格式<br>
+sudo apt-get install android-sdk-libsparse-utils<br>
+sudo simg2img system.img system-raw.img<br>
+sudo mount -t erofs system-row.img mountdir<br>
+sudo umount mountdir
 
 #### Android13自带类库可以在以下文件查看
 prebuilts\sdk\current\support\Android.bp
