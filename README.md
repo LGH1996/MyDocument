@@ -30,10 +30,10 @@ prebuilts\sdk\current\support\Android.bp
 
 
 #### 执行git fetch --unshallow报以下错误
-error: Could not read 6dc40025a3874522742e6a25a20ba37e834e959c
-fatal: Failed to traverse parents of commit b4dad600a484149402d551225fcec3261d823ea8
-error: remote did not send all necessary objects
+error: Could not read 6dc40025a3874522742e6a25a20ba37e834e959c<br>
+fatal: Failed to traverse parents of commit b4dad600a484149402d551225fcec3261d823ea8<br>
+error: remote did not send all necessary objects<br>
 #### 解决方法为依次执行以下命令
-git fsck --full
-git reflog expire --stale-fix --all
-git gc --prune=now
+git fsck --full<br>
+git reflog expire --stale-fix --all<br>
+git gc --prune=now<br>
