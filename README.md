@@ -28,3 +28,12 @@ prebuilts\sdk\current\support\Android.bp
 <img width="821" height="596" alt="image" src="https://github.com/user-attachments/assets/a4012050-e93a-43de-93c4-9df418318b75" /><br><br>
 <img width="662" height="236" alt="image" src="https://github.com/user-attachments/assets/ca4b5283-ba59-4b2a-a729-61f11e1ecc81" />
 
+
+#### 执行git fetch --unshallow报以下错误
+error: Could not read 6dc40025a3874522742e6a25a20ba37e834e959c
+fatal: Failed to traverse parents of commit b4dad600a484149402d551225fcec3261d823ea8
+error: remote did not send all necessary objects
+#### 解决方法为依次执行以下命令
+git fsck --full
+git reflog expire --stale-fix --all
+git gc --prune=now
